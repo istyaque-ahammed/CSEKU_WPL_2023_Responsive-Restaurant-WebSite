@@ -34,7 +34,8 @@ export const NavIcon = styled.div`
   color: #fff;
 
   p {
-    transform: translate(-175%, 100%);
+    transform: translate(-130%, 80%);
+    font-size: 1.8rem;
     font-weight: bold;
   }
 `;
