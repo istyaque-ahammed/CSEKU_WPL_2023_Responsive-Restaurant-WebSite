@@ -37,6 +37,15 @@ export const productData = [
 
 export const productDataTwo = [
   {
+    img: sweet1,
+    alt: 'Brownie',
+    name: 'Brownie Bunch',
+    desc:
+      'Double fudge brownie squares topped with white chocolate pieces and macadamia nuts',
+    price: 'BDT 850.00',
+    button: 'Add to Cart'
+  },
+  {
     img: sweet2,
     alt: 'Donuts',
     name: 'Doughlicious',
@@ -53,14 +62,6 @@ export const productDataTwo = [
       'Vanilla ice cream covered with caramel and chocolate glaze topped with a coco stick',
     price: 'BDT 400.00',
     button: 'Add to Cart'
-  },
-  {
-    img: sweet1,
-    alt: 'Brownie',
-    name: 'Brownie Bunch',
-    desc:
-      'Double fudge brownie squares topped with white chocolate pieces and macadamia nuts',
-    price: 'BDT 850.00',
-    button: 'Add to Cart'
   }
+  
 ];
