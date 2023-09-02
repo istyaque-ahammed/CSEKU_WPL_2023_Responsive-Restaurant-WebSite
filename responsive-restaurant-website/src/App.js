@@ -14,14 +14,8 @@ function App() {
       <Hero />
       <Products heading='Delicious Pizza For You' data={productData}/>
       <Feature/>
-<<<<<<< HEAD
       <Products heading='Sweet Treats For You' data={productDataTwo}/> 
       <Footer/>   
-=======
-      <Products heading='Sweet Treats For You' data={productDataTwo}/>
-      
-    
->>>>>>> parent of f8ab9d5 (menu add)
     </Router>
 
   );
