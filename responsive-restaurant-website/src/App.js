@@ -15,7 +15,6 @@ function App() {
       <Feature/>
       <Products heading='Sweet Treats For You' data={productDataTwo}/>
       
-    
     </Router>
 
   );
