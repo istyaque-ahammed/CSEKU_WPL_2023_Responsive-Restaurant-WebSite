@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const ProductsContainer = styled.div`
   /* width: 100vw; */
@@ -70,5 +71,20 @@ export const ProductButton = styled.button`
     transition: 0.5s ease-out;
     cursor: pointer;
     color: #000;
+  }
+`;
+export const ProductLink = styled(Link)`
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  justify-content: center;
+
+  @media screen and (max-width: 400px) {
+    position: absolute;
+    top: 10px;
+    left: 25px;
   }
 `;

@@ -9,7 +9,8 @@ import {
   ProductInfo,
   ProductDesc,
   ProductPrice,
-  ProductButton
+  ProductButton,
+  ProductLink
 } from './ProductsElements';
 
 const Products = ({ heading, data }) => {
@@ -31,6 +32,7 @@ const Products = ({ heading, data }) => {
           );
         })}
       </ProductWrapper>
+      <ProductLink to='/'>More-&gt;</ProductLink>
     </ProductsContainer>
   );
 };
