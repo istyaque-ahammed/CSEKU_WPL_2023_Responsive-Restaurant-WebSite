@@ -8,6 +8,7 @@ import {
   SidebarRoute,
   SideBtnWrap
 } from './SidebarElements';
+import Hero from '../Hero/HeroElements';
 
 const Sidebar = ({ isOpen, toggle }) => {
   return (
@@ -16,7 +17,7 @@ const Sidebar = ({ isOpen, toggle }) => {
         <CloseIcon />
       </Icon>
       <SidebarMenu>
-        <SidebarLink to='/'>Pizzas</SidebarLink>
+        <SidebarLink to='/Hero'>Pizzas</SidebarLink>
         <SidebarLink to='/'>Desserts</SidebarLink>
         <SidebarLink to='/'>Full Menu</SidebarLink>
       </SidebarMenu>
