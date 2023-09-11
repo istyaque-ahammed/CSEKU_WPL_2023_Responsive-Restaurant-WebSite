@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth , database} from '../../auth/base';
+import { ref, set } from 'firebase/database';
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -10,6 +14,8 @@ function SignUpForm() {
     phoneNumber: '',
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -18,12 +24,39 @@ function SignUpForm() {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can add your form submission logic here
-    console.log(formData);
-  };
+  const handleSubmit = async (e) => {
 
+    try {
+      // Create a new user with email and password
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+  
+      // Get the UID of the newly created user
+      const uid = userCredential.user.uid;
+  
+      // Define the path to the "Users" collection in the Realtime Database
+      const usersRef = ref(database, 'Users');
+  
+      // Set the user data in the Realtime Database under the user's UID
+      await set(usersRef.child(uid), {
+        name: formData.name,
+        email: formData.email,
+        address: formData.address,
+        phoneNumber: formData.phoneNumber,
+      });
+  
+      console.log('User signed up and data saved successfully.');
+  
+      // Redirect the user to the login page upon successful signup
+      navigate('/login'); // Replace '/login' with your desired login route
+    } catch (error) {
+      console.error('Error signing up and saving data:', error.message);
+    }
+  };
+  
   return (
     <div
       style={{

@@ -1,11 +1,39 @@
 import React, { useState } from 'react';
-import 'font-awesome/css/font-awesome.min.css';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../auth/base';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+  
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      
+      // If login is successful, navigate to the homepage
+      navigate('/'); // Replace '/' with your homepage route
+    } catch (error) {
+      console.error('Error logging in:', error.message);
+    }
   };
 
   return (
@@ -31,7 +59,7 @@ function LoginForm() {
         <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', color: 'blue', textAlign: 'center' }}>
           Login
         </h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '10px' }}>
             <label style={{ color: 'gray', fontSize: '14px', fontWeight: 'bold' }} htmlFor="email">
               Email:
@@ -49,6 +77,8 @@ function LoginForm() {
               id="email"
               name="email"
               placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
               required
             />
           </div>
@@ -70,24 +100,26 @@ function LoginForm() {
                 id="password"
                 name="password"
                 placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleChange}
                 required
               />
               <button
-  type="button"
-  onClick={togglePasswordVisibility}
-  style={{
-    marginLeft: '10px',
-    backgroundColor: 'transparent',
-    border: 'none',
-    cursor: 'pointer',
-  }}
->
-  {showPassword ? (
-    <i className="fa fa-eye-slash"></i>
-  ) : (
-    <i className="fa fa-eye"></i>
-  )}
-</button>
+                type="button"
+                onClick={togglePasswordVisibility}
+                style={{
+                  marginLeft: '10px',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+              >
+                {showPassword ? (
+                  <i className="fa fa-eye-slash"></i>
+                ) : (
+                  <i className="fa fa-eye"></i>
+                )}
+              </button>
             </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'right', marginTop: '20px' }}>
