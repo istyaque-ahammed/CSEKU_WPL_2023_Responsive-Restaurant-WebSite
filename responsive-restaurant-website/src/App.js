@@ -4,6 +4,7 @@ import { GlobalStyle } from './globalStyles';
 import Homepage from './components/Homepage/Homepage';
 import Products from './components/Products';
 import { productData , productDataTwo} from './components/Products/data';
+import LoginForm from './components/Login/LoginForm';
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
       <GlobalStyle/>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<LoginForm />} />
+
         <Route path="/pizza" element={<Products data={productData}/>} />
         <Route path="/desserts" element={<Products data={productDataTwo}/>} />
         <Route path="/fullmenu" element={<Products data={ productData}/>} />      

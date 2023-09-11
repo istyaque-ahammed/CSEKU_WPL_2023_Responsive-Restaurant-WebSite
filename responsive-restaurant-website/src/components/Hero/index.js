@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../Navbar';
 import Sidebar from '../Sidebar';
+
 import {
   HeroContainer,
   HeroContent,
@@ -25,7 +26,7 @@ const Hero = () => {
         <HeroItems>
           <HeroH1>Greatest Pizza Ever</HeroH1>
           <HeroP>Ready in 60 seconds</HeroP>
-          <HeroBtn>Order Now</HeroBtn>
+          <HeroBtn to="/login">Order Now</HeroBtn>         
         </HeroItems>
       </HeroContent>
     </HeroContainer>

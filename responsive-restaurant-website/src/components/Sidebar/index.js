@@ -22,7 +22,7 @@ const Sidebar = ({ isOpen, toggle }) => {
         <SidebarLink to='/fullmenu'>Full Menu</SidebarLink>
       </SidebarMenu>
       <SideBtnWrap>
-        <SidebarRoute to='/'>Order Now</SidebarRoute>
+        <SidebarRoute to='/login'>Order Now</SidebarRoute>
       </SideBtnWrap>
     </SidebarContainer>
   );

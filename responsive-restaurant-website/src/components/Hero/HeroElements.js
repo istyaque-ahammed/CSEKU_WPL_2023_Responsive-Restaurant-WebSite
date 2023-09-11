@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ImgBg from '../../images/pizza-3.jpg';
-
+import { Link } from 'react-router-dom'; 
 export const HeroContainer = styled.div`
   background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
     url(${ImgBg});
@@ -46,18 +46,21 @@ export const HeroP = styled.p`
   margin-bottom: 2rem;
 `;
 
-export const HeroBtn = styled.button`
-  font-size: 1.4rem;
-  padding: 1rem 4rem;
-  border: none;
-  background: #e31837;
-  color: #fff;
-  transition: 0.2s ease-out;
+export const HeroBtn = styled(Link)` 
+background: #e31837;
+white-space: nowrap;
+padding: 16px 64px;
+color: #fff;
+font-size: 16px;
+outline: none;
+border: none;
+cursor: pointer;
+transition: 0.2s ease-in-out;
+text-decoration: none;
 
-  &:hover {
-    background: #ffc500;
-    transition: 0.5s ease-out;
-    cursor: pointer;
-    color: #000;
-  }
+&:hover {
+  transition: 0.2s ease-in-out;
+  background: #fff;
+  color: #010606;
+}
 `;
