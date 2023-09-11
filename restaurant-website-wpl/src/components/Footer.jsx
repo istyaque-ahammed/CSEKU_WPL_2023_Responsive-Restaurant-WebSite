@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="footer-logo">
         <img src={logo} alt="Logo" className="w-10 h-10 mr-2" />
           </div>
-          <div className="mb-4 md:mb-0">
+          <div className="mb-2 md:mb-4">
             <a
               href="/"
               className="text-white text-2xl font-bold hover:text-gray-400"

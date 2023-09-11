@@ -8,5 +8,7 @@ module.exports = {
   },
   plugins: [],
   purge: false,
+  /* src/index.css */
+
 }
 

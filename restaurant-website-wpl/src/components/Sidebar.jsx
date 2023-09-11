@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { XIcon } from '@heroicons/react/solid'; // Import from solid in Heroicons v1
-
+import Products from '../pages//Products';
 const Sidebar = ({ isOpen, toggle }) => {
   return (
     <div
@@ -19,7 +19,7 @@ const Sidebar = ({ isOpen, toggle }) => {
       </div>
       <div className="text-center">
         <Link
-          to="/Hero"
+          to="/pizza"
           className="block py-4 text-black hover:text-red-500 text-lg"
           onClick={toggle}
         >

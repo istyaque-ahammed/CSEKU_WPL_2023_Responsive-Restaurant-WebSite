@@ -10,6 +10,7 @@ const Hero = () => {
   };
 
   return (
+    
     <div className="bg-gradient-to-r from-opacity-10 via-opacity-80 to-transparent relative h-screen bg-cover bg-center" style={{ backgroundImage: `url(${ImgBg})` }}>
       <Navbar toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
