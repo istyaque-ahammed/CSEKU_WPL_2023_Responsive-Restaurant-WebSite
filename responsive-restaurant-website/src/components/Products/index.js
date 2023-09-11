@@ -32,7 +32,7 @@ const Products = ({ heading, data }) => {
           );
         })}
       </ProductWrapper>
-      <ProductLink to='/'>More-&gt;</ProductLink>
+      <ProductLink to='/pizza'>More-&gt;</ProductLink>
     </ProductsContainer>
   );
 };
