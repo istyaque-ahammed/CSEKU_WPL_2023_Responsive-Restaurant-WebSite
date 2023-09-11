@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth , database} from '../../auth/base';
+import { auth, database } from '../../auth/base';
 import { ref, set } from 'firebase/database';
 
 function SignUpForm() {
@@ -25,6 +25,7 @@ function SignUpForm() {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
       // Create a new user with email and password
@@ -33,30 +34,32 @@ function SignUpForm() {
         formData.email,
         formData.password
       );
-  
+      // Redirect the user to the login page upon successful signup
+navigate('/login'); // Replace '/login' with your desired login route
+
       // Get the UID of the newly created user
       const uid = userCredential.user.uid;
-  
+
       // Define the path to the "Users" collection in the Realtime Database
       const usersRef = ref(database, 'Users');
-  
+
       // Set the user data in the Realtime Database under the user's UID
-      await set(usersRef.child(uid), {
+      await set(ref(usersRef, uid), { // Use ref() to create a reference to the user's UID
         name: formData.name,
         email: formData.email,
         address: formData.address,
         phoneNumber: formData.phoneNumber,
       });
-  
+
       console.log('User signed up and data saved successfully.');
-  
+
       // Redirect the user to the login page upon successful signup
       navigate('/login'); // Replace '/login' with your desired login route
     } catch (error) {
       console.error('Error signing up and saving data:', error.message);
     }
   };
-  
+
   return (
     <div
       style={{
@@ -78,7 +81,7 @@ function SignUpForm() {
           textAlign: 'left',
         }}
       >
-        <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', color: 'blue',textAlign: 'center' }}>
+        <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', color: 'blue', textAlign: 'center' }}>
           Sign Up
         </h2>
         <form onSubmit={handleSubmit}>
@@ -217,7 +220,7 @@ function SignUpForm() {
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
             <button
               style={{
-                backgroundColor: 'blue',
+                backgroundColor: 'red',
                 color: 'white',
                 fontSize: '16px',
                 fontWeight: 'bold',
@@ -225,8 +228,11 @@ function SignUpForm() {
                 borderRadius: '4px',
                 border: 'none',
                 cursor: 'pointer',
+                transition: 'background-color 0.3s',  
               }}
               type="submit"
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#010606'}  // Change to yellow on hover
+              onMouseLeave={(e) => e.target.style.backgroundColor = 'red'}     // Change back to red on mouse leave
             >
               Sign Up
             </button>

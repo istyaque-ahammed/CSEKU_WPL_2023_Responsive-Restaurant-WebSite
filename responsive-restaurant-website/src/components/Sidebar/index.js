@@ -8,7 +8,6 @@ import {
   SidebarRoute,
   SideBtnWrap
 } from './SidebarElements';
-import Hero from '../Hero/HeroElements';
 
 const Sidebar = ({ isOpen, toggle }) => {
   return (

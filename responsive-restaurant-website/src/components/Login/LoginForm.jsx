@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../auth/base';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import 'font-awesome/css/font-awesome.min.css';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,7 +10,7 @@ function LoginForm() {
     email: '',
     password: '',
   });
-  
+  const [passwordError, setPasswordError] = useState(null); // State for password error
   const navigate = useNavigate(); // Initialize the navigate function
 
   const togglePasswordVisibility = () => {
@@ -33,6 +34,7 @@ function LoginForm() {
       navigate('/'); // Replace '/' with your homepage route
     } catch (error) {
       console.error('Error logging in:', error.message);
+      setPasswordError('Incorrect email or password'); // Set the password error message
     }
   };
 
@@ -122,10 +124,15 @@ function LoginForm() {
               </button>
             </div>
           </div>
+          {passwordError && (
+            <p style={{ color: 'red', fontSize: '12px', marginBottom: '10px' }}>
+              {passwordError}
+            </p>
+          )}
           <div style={{ display: 'flex', justifyContent: 'right', marginTop: '20px' }}>
             <button
               style={{
-                backgroundColor: 'blue',
+                backgroundColor: 'red',
                 color: 'white',
                 fontSize: '16px',
                 fontWeight: 'bold',
@@ -133,10 +140,13 @@ function LoginForm() {
                 borderRadius: '4px',
                 border: 'none',
                 cursor: 'pointer',
+                transition: 'background-color 0.3s',
               }}
               type="submit"
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#010606'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = 'red'}
             >
-              Login
+              Log in
             </button>
           </div>
         </form>
@@ -149,6 +159,7 @@ function LoginForm() {
       </div>
     </div>
   );
+
 }
 
 export default LoginForm;
