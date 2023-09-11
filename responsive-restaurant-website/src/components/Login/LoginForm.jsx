@@ -1,11 +1,11 @@
 import React from 'react';
-
+import Footer from '../Footer';
 function LoginForm() {
   return (
     <div
       style={{
         backgroundColor: 'black',
-        minHeight: '100vh',
+        minHeight: '86.4vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -18,10 +18,10 @@ function LoginForm() {
           borderRadius: '8px',
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
           width: '300px',
-          textAlign: 'center',
+          textAlign: 'left',
         }}
       >
-        <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', color: 'blue' }}>
+        <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', color: 'blue' ,textAlign: 'center'}}>
           Login
         </h2>
         <form>
@@ -36,6 +36,7 @@ function LoginForm() {
                 border: '1px solid #ccc',
                 borderRadius: '4px',
                 outline: 'none',
+                textAlign: 'left', // Set text-align to left
               }}
               type="email"
               id="email"
@@ -55,6 +56,7 @@ function LoginForm() {
                 border: '1px solid #ccc',
                 borderRadius: '4px',
                 outline: 'none',
+                textAlign: 'left', // Set text-align to left
               }}
               type="password"
               id="password"
@@ -63,6 +65,7 @@ function LoginForm() {
               required
             />
           </div>
+          <div style={{ display: 'flex', justifyContent: 'right', marginTop: '20px' }}>
           <button
             style={{
               backgroundColor: 'blue',
@@ -78,17 +81,19 @@ function LoginForm() {
           >
             Login
           </button>
+          </div>
         </form>
-        <p style={{ color: 'gray', fontSize: '14px', marginTop: '20px' }}>
+        <p style={{ color: 'gray', fontSize: '14px', marginTop: '20px', textAlign: 'center' }}>
           Don't have an account?{' '}
-          <a style={{ color: 'blue', textDecoration: 'underline' }} href="#">
+          <a style={{ color: 'blue', textDecoration: 'underline' }} href="/signup">
             Sign Up
           </a>
         </p>
       </div>
     </div>
+    
   );
+
 }
 
 export default LoginForm;
-
