@@ -201,7 +201,7 @@ function SignUpForm() {
         </form>
         <p style={{ color: 'gray', fontSize: '14px', marginTop: '20px', textAlign: 'center'}}>
           Already have an account?{' '}
-          <a style={{ color: 'blue', textDecoration: 'underline' }} href="#">
+          <a style={{ color: 'blue', textDecoration: 'underline' }} href="/login">
             Login
           </a>
         </p>

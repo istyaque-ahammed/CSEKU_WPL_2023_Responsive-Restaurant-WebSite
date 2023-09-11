@@ -1,6 +1,13 @@
-import React from 'react';
-import Footer from '../Footer';
+import React, { useState } from 'react';
+import 'font-awesome/css/font-awesome.min.css';
+
 function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div
       style={{
@@ -21,7 +28,7 @@ function LoginForm() {
           textAlign: 'left',
         }}
       >
-        <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', color: 'blue' ,textAlign: 'center'}}>
+        <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', color: 'blue', textAlign: 'center' }}>
           Login
         </h2>
         <form>
@@ -36,7 +43,7 @@ function LoginForm() {
                 border: '1px solid #ccc',
                 borderRadius: '4px',
                 outline: 'none',
-                textAlign: 'left', // Set text-align to left
+                textAlign: 'left',
               }}
               type="email"
               id="email"
@@ -49,38 +56,56 @@ function LoginForm() {
             <label style={{ color: 'gray', fontSize: '14px', fontWeight: 'bold' }} htmlFor="password">
               Password:
             </label>
-            <input
-              style={{
-                width: '100%',
-                padding: '10px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                outline: 'none',
-                textAlign: 'left', // Set text-align to left
-              }}
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password"
-              required
-            />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <input
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  outline: 'none',
+                  textAlign: 'left',
+                }}
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+              <button
+  type="button"
+  onClick={togglePasswordVisibility}
+  style={{
+    marginLeft: '10px',
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+  }}
+>
+  {showPassword ? (
+    <i className="fa fa-eye-slash"></i>
+  ) : (
+    <i className="fa fa-eye"></i>
+  )}
+</button>
+            </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'right', marginTop: '20px' }}>
-          <button
-            style={{
-              backgroundColor: 'blue',
-              color: 'white',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              padding: '10px 20px',
-              borderRadius: '4px',
-              border: 'none',
-              cursor: 'pointer',
-            }}
-            type="submit"
-          >
-            Login
-          </button>
+            <button
+              style={{
+                backgroundColor: 'blue',
+                color: 'white',
+                fontSize: '16px',
+                fontWeight: 'bold',
+                padding: '10px 20px',
+                borderRadius: '4px',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+              type="submit"
+            >
+              Login
+            </button>
           </div>
         </form>
         <p style={{ color: 'gray', fontSize: '14px', marginTop: '20px', textAlign: 'center' }}>
@@ -91,9 +116,7 @@ function LoginForm() {
         </p>
       </div>
     </div>
-    
   );
-
 }
 
 export default LoginForm;
