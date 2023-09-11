@@ -26,14 +26,14 @@ const Sidebar = ({ isOpen, toggle }) => {
           Pizzas
         </Link>
         <Link
-          to="/"
+          to="/desserts"
           className="block py-4 text-black hover:text-red-500 text-lg"
           onClick={toggle}
         >
           Desserts
         </Link>
         <Link
-          to="/"
+          to="/fullmenu"
           className="block py-4 text-black hover:text-red-500 text-lg"
           onClick={toggle}
         >
