@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../auth/base';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 
 function LoginForm() {
@@ -10,8 +10,9 @@ function LoginForm() {
     email: '',
     password: '',
   });
-  const [passwordError, setPasswordError] = useState(null); // State for password error
-  const navigate = useNavigate(); // Initialize the navigate function
+  const [passwordError, setPasswordError] = useState(null);
+  const [userNotFoundError, setUserNotFoundError] = useState(false); // State for user not found error
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -29,12 +30,17 @@ function LoginForm() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      
-      // If login is successful, navigate to the homepage
-      navigate('/'); // Replace '/' with your homepage route
+      navigate('/');
     } catch (error) {
       console.error('Error logging in:', error.message);
-      setPasswordError('Incorrect email or password'); // Set the password error message
+      setPasswordError('Incorrect email or password');
+      
+      // Check if the error is 'auth/user-not-found'
+      if (error.code === 'auth/user-not-found') {
+        setUserNotFoundError(true);
+      } else {
+        setUserNotFoundError(false);
+      }
     }
   };
 
@@ -88,7 +94,7 @@ function LoginForm() {
             <label style={{ color: 'gray', fontSize: '14px', fontWeight: 'bold' }} htmlFor="password">
               Password:
             </label>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ position: 'relative' }}>
               <input
                 style={{
                   width: '100%',
@@ -110,7 +116,10 @@ function LoginForm() {
                 type="button"
                 onClick={togglePasswordVisibility}
                 style={{
-                  marginLeft: '10px',
+                  position: 'absolute',
+                  right: '10px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
                   backgroundColor: 'transparent',
                   border: 'none',
                   cursor: 'pointer',
@@ -127,6 +136,11 @@ function LoginForm() {
           {passwordError && (
             <p style={{ color: 'red', fontSize: '12px', marginBottom: '10px' }}>
               {passwordError}
+            </p>
+          )}
+          {userNotFoundError && (
+            <p style={{ color: 'red', fontSize: '12px', marginBottom: '10px' }}>
+              User not found. Please check your email.
             </p>
           )}
           <div style={{ display: 'flex', justifyContent: 'right', marginTop: '20px' }}>
@@ -159,7 +173,6 @@ function LoginForm() {
       </div>
     </div>
   );
-
 }
 
 export default LoginForm;

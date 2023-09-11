@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, database } from '../../auth/base';
 import { ref, set } from 'firebase/database';
+import 'font-awesome/css/font-awesome.min.css';
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,9 @@ function SignUpForm() {
     phoneNumber: '',
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,6 +26,14 @@ function SignUpForm() {
       ...formData,
       [name]: value,
     });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
   };
 
   const handleSubmit = async (e) => {
@@ -34,8 +46,9 @@ function SignUpForm() {
         formData.email,
         formData.password
       );
+
       // Redirect the user to the login page upon successful signup
-navigate('/login'); // Replace '/login' with your desired login route
+      navigate('/login');
 
       // Get the UID of the newly created user
       const uid = userCredential.user.uid;
@@ -44,7 +57,7 @@ navigate('/login'); // Replace '/login' with your desired login route
       const usersRef = ref(database, 'Users');
 
       // Set the user data in the Realtime Database under the user's UID
-      await set(ref(usersRef, uid), { // Use ref() to create a reference to the user's UID
+      await set(ref(usersRef, uid), {
         name: formData.name,
         email: formData.email,
         address: formData.address,
@@ -54,7 +67,7 @@ navigate('/login'); // Replace '/login' with your desired login route
       console.log('User signed up and data saved successfully.');
 
       // Redirect the user to the login page upon successful signup
-      navigate('/login'); // Replace '/login' with your desired login route
+      navigate('/login');
     } catch (error) {
       console.error('Error signing up and saving data:', error.message);
     }
@@ -131,22 +144,40 @@ navigate('/login'); // Replace '/login' with your desired login route
             <label style={{ color: 'gray', fontSize: '14px', fontWeight: 'bold', display: 'block' }} htmlFor="password">
               Password:
             </label>
-            <input
-              style={{
-                width: '100%',
-                padding: '10px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                outline: 'none',
-              }}
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <input
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  outline: 'none',
+                }}
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                style={{
+                  marginLeft: '-30px',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+              >
+                {showPassword ? (
+                  <i className="fa fa-eye-slash"></i>
+                ) : (
+                  <i className="fa fa-eye"></i>
+                )}
+              </button>
+            </div>
           </div>
           <div style={{ marginBottom: '10px' }}>
             <label
@@ -155,22 +186,40 @@ navigate('/login'); // Replace '/login' with your desired login route
             >
               Confirm Password:
             </label>
-            <input
-              style={{
-                width: '100%',
-                padding: '10px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                outline: 'none',
-              }}
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              placeholder="Confirm your password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <input
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  outline: 'none',
+                }}
+                type={showConfirmPassword ? 'text' : 'password'}
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                onClick={toggleConfirmPasswordVisibility}
+                style={{
+                  marginLeft: '-30px',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+              >
+                {showConfirmPassword ? (
+                  <i className="fa fa-eye-slash"></i>
+                ) : (
+                  <i className="fa fa-eye"></i>
+                )}
+              </button>
+            </div>
           </div>
           <div style={{ marginBottom: '10px' }}>
             <label style={{ color: 'gray', fontSize: '14px', fontWeight: 'bold', display: 'block' }} htmlFor="address">
@@ -228,7 +277,7 @@ navigate('/login'); // Replace '/login' with your desired login route
                 borderRadius: '4px',
                 border: 'none',
                 cursor: 'pointer',
-                transition: 'background-color 0.3s',  
+                transition: 'background-color 0.3s',
               }}
               type="submit"
               onMouseEnter={(e) => e.target.style.backgroundColor = '#010606'}  // Change to yellow on hover
