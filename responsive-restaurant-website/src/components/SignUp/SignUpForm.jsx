@@ -17,7 +17,7 @@ function SignUpForm() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -47,10 +47,8 @@ function SignUpForm() {
         formData.password
       );
 
-      // Redirect the user to the login page upon successful signup
-      navigate('/login');
-
       // Get the UID of the newly created user
+      navigate('/login');
       const uid = userCredential.user.uid;
 
       // Define the path to the "Users" collection in the Realtime Database
@@ -265,7 +263,7 @@ function SignUpForm() {
               onChange={handleChange}
               required
             />
-          </div >
+          </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
             <button
               style={{
@@ -280,14 +278,14 @@ function SignUpForm() {
                 transition: 'background-color 0.3s',
               }}
               type="submit"
-              onMouseEnter={(e) => e.target.style.backgroundColor = '#010606'}  // Change to yellow on hover
-              onMouseLeave={(e) => e.target.style.backgroundColor = 'red'}     // Change back to red on mouse leave
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#010606'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = 'red'}
             >
               Sign Up
             </button>
           </div>
         </form>
-        <p style={{ color: 'gray', fontSize: '14px', marginTop: '20px', textAlign: 'center'}}>
+        <p style={{ color: 'gray', fontSize: '14px', marginTop: '20px', textAlign: 'center' }}>
           Already have an account?{' '}
           <a style={{ color: 'blue', textDecoration: 'underline' }} href="/login">
             Login
