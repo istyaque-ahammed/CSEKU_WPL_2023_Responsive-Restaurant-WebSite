@@ -15,7 +15,7 @@ import {
 } from './ProductsElements';
 
 
-const Products = ({ heading, data }) => {
+const Dessert = ({ heading, data }) => {
   return (
     <ProductsContainer>
       <ProductsHeading>{heading}</ProductsHeading>
@@ -34,9 +34,12 @@ const Products = ({ heading, data }) => {
           );
         })}
       </ProductWrapper>
-      <ProductLink1 to='/pizza'>More-&gt;</ProductLink1>
+      <ProductLink1 to='/dessert'>More-&gt;</ProductLink1>
+
     </ProductsContainer>
+    
   );
+  
 };
 
-export default Products;
+export default Dessert;

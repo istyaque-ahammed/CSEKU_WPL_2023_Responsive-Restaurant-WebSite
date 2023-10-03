@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 export const ProductsContainer = styled.div`
   /* width: 100vw; */
-  min-height: 100vh;
-  padding: 5rem calc((100vw - 1300px) / 2);
+  min-height: 90vh;
+  padding: 1rem calc((100vw - 1300px) / 2);
   background: black;
   color: #fff;
 `;

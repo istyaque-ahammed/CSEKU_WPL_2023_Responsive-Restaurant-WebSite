@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from './globalStyles';
 import Homepage from './components/Homepage/Homepage';
 import Products from './components/Products';
+import Dessert from './components/Products/dessert'
 import { productData, productDataTwo } from './components/Products/data';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
@@ -20,9 +21,8 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/pizza" element={<Products data={productData} />} />
-        <Route path="/desserts" element={<Products data={productDataTwo} />} />
-        <Route path="/fullmenu" element={<Products data={productData} />} />
+        <Route path="/pizza" element={<Products heading='Delicious Pizza For You' data={productData} />} />
+        <Route path="/dessert" element={<Dessert heading='Sweet Treats For You' data={productDataTwo} />} />
         <Route path="/Edit" element={<Edit />} />
         <Route path="/Add" element={<Add />} />
         <Route path="/admin" element={<MainBoard />} />  

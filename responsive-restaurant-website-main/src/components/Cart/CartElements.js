@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const CartContainer = styled.div`
-min-height: 100vh;
-padding: 5rem calc((100vw - 1300px) / 2);
+min-height: 0vh;
+padding: 2rem calc((100vw - 1300px) / 2);
 background: black;
 color: #fff;font-size: 20px;
 `;

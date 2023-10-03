@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import { NavLink as Link } from 'react-router-dom';
 import { FaPizzaSlice } from 'react-icons/fa';
-
+import { FaShoppingCart } from 'react-icons/fa';
 export const Nav = styled.nav`
   background: transparent;
   height: 80px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   font-weight: 700;
 `;
 
 export const NavLink = styled(Link)`
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -20,10 +20,15 @@ export const NavLink = styled(Link)`
 
   @media screen and (max-width: 400px) {
     position: absolute;
-    top: 10px;
-    left: 25px;
+    top: 10px; /* Adjust the top position as needed */
+    left: 0; /* Position the link on the left */
+  }
+  p {
+    font-size: 1.8rem;
+    font-weight: bold;
   }
 `;
+
 
 export const NavIcon = styled.div`
   display: block;
@@ -43,4 +48,8 @@ export const NavIcon = styled.div`
 export const Bars = styled(FaPizzaSlice)`
   font-size: 2rem;
   transform: translate(-50%, -15%);
+`;
+export const CartIcon = styled(FaShoppingCart)`
+  font-size: 2.5rem;
+  transform: translate(30%, 0%);
 `;

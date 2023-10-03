@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import Products from "./Page";
-import Cart from "../Cart";
-import { productData, productDataTwo } from "./data"; 
+import React, { useState, useRef } from 'react';
+import Products from './Page';
+import Cart from '../Cart';
+import { productData, productDataTwo } from './data';
+import Footer from '../Footer';
 
 const ProductPage = () => {
   const [cart, setCart] = useState([]);
+  const cartRef = useRef(null);
 
   const addToCart = (product) => {
     const updatedCart = [...cart];
@@ -25,11 +27,13 @@ const ProductPage = () => {
     setCart(updatedCart);
   };
 
+
   return (
     <div>
-      <Products heading="Our Pizzas" data={productData} addToCart={addToCart} />
-      <Products heading="Our Sweets" data={productDataTwo} addToCart={addToCart} />
-      <Cart cart={cart} removeFromCart={removeFromCart} />
+      <Products heading='Delicious Pizza For You' data={productData} addToCart={addToCart} />
+      <Products heading='Sweet Treats For You' data={productDataTwo} addToCart={addToCart} />
+        <Cart cart={cart} removeFromCart={removeFromCart} />  
+        <Footer />
     </div>
   );
 };
