@@ -1,0 +1,32 @@
+
+
+.full-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .success-container {
+    text-align: center;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .success-heading {
+    font-size: 30px;
+    color: #009688;
+    margin-bottom: 20px;
+  }
+  
+  .success-message {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  

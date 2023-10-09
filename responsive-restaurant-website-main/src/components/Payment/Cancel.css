@@ -1,0 +1,31 @@
+
+.full-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .cancel-container {
+    text-align: center;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cancel-heading {
+    font-size: 30px;
+    color: #ff5722; /* Use a different color to distinguish from the success page */
+    margin-bottom: 20px;
+  }
+  
+  .cancel-message {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  

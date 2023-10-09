@@ -127,10 +127,6 @@ app.get('/userdata', (req, res)=>{
 })
 
 
-
-
-
-
 mongoose.connection.on('open', () => {
     console.log('Connected to MongoDB');
     const port = 2000;

@@ -22,7 +22,7 @@ const Footer = () => {
       <FooterWrap>
         <SocialMedia>
           <SocialMediaWrap>
-            <SocialLogo to='/'>Pizza</SocialLogo>
+            <SocialLogo to='/'>Home</SocialLogo>
             <SocialIcons>
               <SocialIconLink href='https://www.facebook.com/IstyaqueAhammed/' target='_blank' aria-label='Facebook'>
                 <FaFacebook />

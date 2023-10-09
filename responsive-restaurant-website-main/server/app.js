@@ -6,7 +6,8 @@ app.use(express.json());
 app.use(cors());
 
 app.post("/api/create-checkout-session",async(req,res)=>{
-    const {products} =req.body;
+    const {products} = req.body;
+    console.log(products);
     
     const lineItems = products.map((product)=>({
         price_data:{
@@ -16,19 +17,18 @@ app.post("/api/create-checkout-session",async(req,res)=>{
             },
             unit_amount: product.price * 100, 
         },
-        quantity:product.amount
+        quantity: product.amount
     }));
 
     const session = await stripe.checkout.sessions.create({
         payment_method_types:["card"],
-        line_items:lineItems,
+        line_items: lineItems,
         mode: "payment",
-        success_url:"http://localhost:3000/success",
-        cancel_url:"http://localhost:3000/cancel",
-
+        success_url: "http://localhost:3000/success",
+        cancel_url: "http://localhost:3000/cancel",
+        
     })
-    res.json({id:session.id})
-
+    res.json({id: session.id})
 })
 
 app.listen(7000,()=>{

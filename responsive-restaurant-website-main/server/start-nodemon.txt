@@ -1,0 +1,3 @@
+Get-ExecutionPolicy
+Set-ExecutionPolicy Bypass -Scope Process
+nodemon app.js
