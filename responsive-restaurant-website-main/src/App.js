@@ -11,6 +11,9 @@ import Edit from './admin/Component/Edit.jsx';
 import Add from './admin/Component/Add.jsx';
 import MainBoard from './admin/Component/MainBoard.jsx';
 import ProductPage from './components/Products/ProductPage.js';
+import CheckoutForm from './components/CheckOut/CheckoutForm';
+import Success from './components/Payment/Success';
+import Cancel from './components/Payment/Cancel';
 
 
 function App() {
@@ -26,7 +29,11 @@ function App() {
         <Route path="/Edit" element={<Edit />} />
         <Route path="/Add" element={<Add />} />
         <Route path="/admin" element={<MainBoard />} />  
-        <Route path="/productpage" element={<ProductPage/>}/>   
+        <Route path="/productpage" element={<ProductPage/>}/>
+        <Route path="/checkout" element={<CheckoutForm/>}/>
+        <Route path="/success" element={<Success/>}/>
+        <Route path="/cancel" element={<Cancel/>}/>
+
       </Routes>
     </Router>
   );

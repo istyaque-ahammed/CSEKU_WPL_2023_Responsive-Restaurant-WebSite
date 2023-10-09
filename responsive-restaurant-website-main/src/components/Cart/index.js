@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   CartContainer,
   CartItem,
@@ -17,6 +19,30 @@ const Cart = ({ cart, removeFromCart }) => {
     (acc, item) => acc + item.price * item.amount,
     0
   );
+
+  const makePayment = async()=>{
+    const stripe = await loadStripe("pk_test_51Nz6mCBwDyAJHsE8D2JcHzB0rHKQz2dSekiZ4zODYEDlwxWePiHE5eVYts9pA8SHq3AmS0nQMNtwB7Ye5Y7OoYUI00J4eJfQzW")
+
+    const body = {
+      products: cart
+    }
+    const headers ={
+      "Content-Type": "application/json"
+    }
+    const response = await fetch("http://localhost:7000/api/create-checkout-session",{
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body)
+    });
+    const session = await response.json();
+    const result = stripe.redirectToCheckout({
+      sessionId:session.id
+    });
+
+    if(result.error){
+      console.log(result.error);
+    }
+  } 
 
   return (
     <CartContainer>
@@ -44,7 +70,9 @@ const Cart = ({ cart, removeFromCart }) => {
           ))}
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <TotalPrice>Total Price: {totalPrice}</TotalPrice>
-            <CheckoutButton>Checkout</CheckoutButton>
+            <Link to="">
+              <CheckoutButton onClick={makePayment}>Checkout</CheckoutButton>
+            </Link>
           </div>
         </>
       )}

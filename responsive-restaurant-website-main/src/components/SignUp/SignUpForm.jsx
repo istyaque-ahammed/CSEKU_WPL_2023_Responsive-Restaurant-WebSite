@@ -84,11 +84,11 @@ function SignUpForm() {
       <div
         style={{
           backgroundColor: 'white',
-          height: '585px',
-          padding: '20px',
+          height: '635px',
+          padding: '15px',
           borderRadius: '8px',
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-          width: '400px',
+          width: '500px',
           textAlign: 'left',
         }}
       >
