@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, database } from '../../auth/base';
+import { auth, db } from '../../auth/base';
 import { ref, set } from 'firebase/database';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -48,11 +49,10 @@ function SignUpForm() {
       );
 
       // Get the UID of the newly created user
-      navigate('/login');
       const uid = userCredential.user.uid;
 
       // Define the path to the "Users" collection in the Realtime Database
-      const usersRef = ref(database, 'Users');
+      const usersRef = ref(db, 'Users');
 
       // Set the user data in the Realtime Database under the user's UID
       await set(ref(usersRef, uid), {

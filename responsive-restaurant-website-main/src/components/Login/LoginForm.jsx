@@ -30,7 +30,7 @@ function LoginForm() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      navigate('/');
+      navigate('/productpage');
     } catch (error) {
       console.error('Error logging in:', error.message);
       setPasswordError('Incorrect email or password');
